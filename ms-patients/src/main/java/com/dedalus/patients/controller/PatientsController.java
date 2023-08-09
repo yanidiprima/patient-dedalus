@@ -38,7 +38,7 @@ public class PatientsController {
 	@ApiOperation(value = "Get a patient by ID", nickname = "get-patient-by-id", httpMethod = "GET",
 			notes = "Given an ID a patient with that ID will be returned", response = PatientResponseDto.class)
 	@Operation(summary = "Get a patient by ID", method = "GET")
-	public ResponseEntity<PatientResponseDto> findDomiciliationGenerationById(
+	public ResponseEntity<PatientResponseDto> findPatientById(
 			@ApiParam(value = "ID of the patient that is returned", required = true)
 			@PathVariable(name = "id") String id) {
 		try {
