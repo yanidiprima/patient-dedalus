@@ -6,8 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient; 
 import org.springframework.web.reactive.function.client.WebClientResponseException;
-
-import com.dedalus.patients.dto.PatientDto;
+ 
 import com.dedalus.patients.dto.PatientResponseDto;
 import com.dedalus.patients.mapper.PatientMapper;
 import com.dedalus.patients.utils.Constants;
@@ -27,18 +26,18 @@ public class PatientIntegration {
     private PatientMapper mapper;
     
     public PatientResponseDto getPatientById(String patientId) {
-    	PatientDto  patient = getPatientFHIRById(patientId);
+    	String  patient = getPatientFHIRById(patientId);
         return mapExternalToInternal(patient); 
     }
     
-    private PatientDto getPatientFHIRById(String patientId) {
+    private String getPatientFHIRById(String patientId) {
 
 		WebClient webClient = builder.baseUrl(base_api_patient).build(); 
 		try {
 			return webClient.get()
 	                .uri(base_api_patient+patientId)
 	                .retrieve()
-	                .bodyToMono(PatientDto.class)
+	                .bodyToMono(String.class)
 	                .block(); 
 		}catch (WebClientResponseException  e) {
 			if (e.getStatusCode().is4xxClientError()) {
@@ -50,7 +49,7 @@ public class PatientIntegration {
             }
 		}
     }
-    private PatientResponseDto mapExternalToInternal(PatientDto patient) { 
-        return mapper.patientDtotoPatientResponseDto(patient);
+    private PatientResponseDto mapExternalToInternal(String patient) { 
+        return mapper.patientDtotoPatientResponseDto(patient); 
     }
 }

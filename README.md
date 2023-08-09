@@ -24,3 +24,6 @@ Aplicación Spring Boot para consultar los pacientes por su ID
 ## Uso
 
 En la URL provista anteriormente, se encontrará la documentación sobre la implementación de la API como parametros requeridos obligatorios y el modelo de respuesta.
+
+## Solución
+
