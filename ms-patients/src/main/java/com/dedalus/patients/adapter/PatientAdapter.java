@@ -10,9 +10,9 @@ import org.springframework.web.reactive.function.client.WebClientResponseExcepti
 import com.dedalus.patients.dto.PatientDto;
 import com.dedalus.patients.dto.PatientResponseDto;
 import com.dedalus.patients.mapper.PatientMapper;
+import com.dedalus.patients.utils.Constants;
 import com.dedalus.patients.utils.ThrowErrorResponse;
-
-import reactor.core.publisher.Mono; 
+ 
 
 @Service
 public class PatientAdapter {
@@ -42,11 +42,11 @@ public class PatientAdapter {
 	                .block(); 
 		}catch (WebClientResponseException  e) {
 			if (e.getStatusCode().is4xxClientError()) {
-                throw new ThrowErrorResponse(HttpStatus.NOT_FOUND, "Recurso no encontrado");
+                throw new ThrowErrorResponse(HttpStatus.NOT_FOUND, Constants.RECURSO_NOT_FOUND);
             } else if (e.getStatusCode().is5xxServerError()) {
-                throw new ThrowErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR, "Error interno del servidor");
+                throw new ThrowErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR, Constants.INTERNAL_ERROR);
             } else {
-                throw new ThrowErrorResponse(HttpStatus.SERVICE_UNAVAILABLE, "Servicio no disponible");
+                throw new ThrowErrorResponse(HttpStatus.SERVICE_UNAVAILABLE, Constants.SERVICE_UNAVAILABLE);
             }
 		}
     }
