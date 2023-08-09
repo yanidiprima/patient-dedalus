@@ -28,10 +28,10 @@ public class PatientsController {
 	
 	
 	/**
-	 * find domiciliationGenerationDto by id
+	 * Find patient by Id
 	 *
 	 * @param id
-	 * @return
+	 * @return PatientResponseDto
 	 */
 	@GetMapping(value = "/patient/{id}", 
 			produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_JSON_UTF8_VALUE})
