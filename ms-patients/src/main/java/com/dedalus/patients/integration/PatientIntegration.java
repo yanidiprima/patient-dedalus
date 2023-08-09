@@ -1,4 +1,4 @@
-package com.dedalus.patients.adapter;
+package com.dedalus.patients.integration;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -15,7 +15,7 @@ import com.dedalus.patients.utils.ThrowErrorResponse;
  
 
 @Service
-public class PatientAdapter {
+public class PatientIntegration {
 
     @Autowired
     protected WebClient.Builder builder; 
